@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { useContext } from "react";
+import NoteContext from "../ContextAPI/NoteContext";
+
 
 const Modal = (props) => {
+
 
     const modalContainer={
         position:'fixed',
@@ -22,6 +26,7 @@ const Modal = (props) => {
         top:'0',
         background:'rgba(0, 0, 0, 0.5)'
     }
+    const a = useContext(NoteContext)
 
   return (
     <>
@@ -29,9 +34,9 @@ const Modal = (props) => {
         <>
           <div style={modalWrapper}  onClick={props.closeModal}></div>
           <div className="container" style={modalContainer}>
-            <h2>Total Amount</h2>
-            <p>Rs 0</p>
-
+          <ul>{a.items.map((i)=>{return(<><li>{i.dish} {`x${i.quantity}`}</li>{`Rs ${i.price}`}<hr/></>)})}</ul>
+            <h4>Total Amount :</h4>
+            <h4>Rs {a.items.reduce((accu,curr)=>accu+curr.price,0)}</h4>
             <button type="button" className="btn btn-dark">
               {" "}
               Order
