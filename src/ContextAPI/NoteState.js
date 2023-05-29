@@ -5,9 +5,15 @@ import { useState } from 'react';
 const NoteState = (props) => {
     const [items, setItems] = useState([]) ;
 
-    const addItems=((item)=>{
-        setItems([...items, item])
+  const addItems=((item)=>{ 
+
+    
+      const fil= items.filter((i)=>{
+      return(i.dish!==item.dish)
     })
+    setItems([...fil,item])
+          
+      })
     const removeItems=(()=>{})
 
     const noteContext=
